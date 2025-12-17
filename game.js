@@ -853,29 +853,43 @@ class MaWangDuiGame {
         }, 100);
     }
     
-    // 第三章：帛画之谜
+// 第三章：帛画之谜
     playChapter3() {
         // 解锁文物：T形帛画
         this.state.unlockArtifact('t-shaped-silk');
         
         // 设置场景背景（主墓室）
-        document.getElementById('scene-background').style.background = 'linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%)';
+        document
+.getElementById('scene-background').style.background = 'linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%)';
+        
+
         
         // 清空场景元素
-        document.getElementById('scene-background').innerHTML = '';
+        document
+.getElementById('scene-background').innerHTML = '';
         
         // 模拟帛画NPC
         const silkPaintingArea = document.createElement('div');
-        silkPaintingArea.id = 't-shaped-silk';
-        silkPaintingArea.style.position = 'absolute';
-        silkPaintingArea.style.top = '50%';
-        silkPaintingArea.style.left = '50%';
-        silkPaintingArea.style.transform = 'translate(-50%, -50%)';
-        silkPaintingArea.style.width = '150px';
-        silkPaintingArea.style.height = '200px';
-        silkPaintingArea.style.cursor = 'pointer';
-        silkPaintingArea.style.textAlign = 'center';
-        silkPaintingArea.innerHTML = `
+        silkPaintingArea
+.id = 't-shaped-silk';
+        silkPaintingArea
+.style.position = 'absolute';
+        silkPaintingArea
+.style.top = '50%';
+        silkPaintingArea
+.style.left = '50%';
+        silkPaintingArea
+.style.transform = 'translate(-50%, -50%)';
+        silkPaintingArea
+.style.width = '150px';
+        silkPaintingArea
+.style.height = '200px';
+        silkPaintingArea
+.style.cursor = 'pointer';
+        silkPaintingArea
+.style.textAlign = 'center';
+        silkPaintingArea
+.innerHTML = `
             <div style="text-align: center;">
                 <i class="fas fa-scroll" style="font-size: 5rem; color: #ffeb3b; text-shadow: 0 0 10px rgba(255, 235, 59, 0.7);"></i>
                 <p style="margin-top: 10px; color: white;">T形帛画</p>
@@ -883,7 +897,8 @@ class MaWangDuiGame {
         `;
         
         // 添加点击事件
-        silkPaintingArea.onclick = () => {
+        silkPaintingArea
+.onclick = () => {
             this.hideInteractionHint();
             
             // 显示选择：直接查看文物或玩拼图
@@ -901,9 +916,9 @@ class MaWangDuiGame {
         };
         
         // 添加到场景
-        document.getElementById('scene-background').appendChild(silkPaintingArea);
+        document
+.getElementById('scene-background').appendChild(silkPaintingArea);
     }
-    
     // T形帛画拼图游戏
     startTShapePuzzle() {
         this.showTask({
@@ -920,10 +935,10 @@ class MaWangDuiGame {
                     
                     <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
                         <!-- T形拼图轮廓区域 -->
-                        <div id="puzzle-container" style="position: relative; width: 220px; height: 320px; 
+                        <div style="position: relative; width: 220px; height: 320px; 
                                     border: 3px dashed rgba(255, 215, 0, 0.3); 
                                     border-radius: 15px; background: rgba(0, 0, 0, 0.2);
-                                    margin-bottom: 10px; touch-action: none;">
+                                    margin-bottom: 10px;">
                             <!-- 天界轮廓（上部较宽） -->
                             <div id="drop-zone-天界" class="drop-zone" data-piece="天界" 
                                  style="position: absolute; top: 20px; left: 10px; width: 200px; height: 120px;
@@ -976,36 +991,36 @@ class MaWangDuiGame {
                             </h4>
                             <div id="puzzle-pieces" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
                                 <!-- 天界碎片 -->
-                                <div class="puzzle-piece" id="piece-天界" data-piece="天界"
+                                <div class="puzzle-piece" id="piece-天界" data-piece="天界" draggable="true"
                                      style="width: 110px; height: 65px; cursor: grab; user-select: none;
                                             background: linear-gradient(135deg, #1a237e, #283593);
                                             border-radius: 10px 10px 0 0; border: 3px solid #5c6bc0;
                                             display: flex; flex-direction: column; align-items: center; justify-content: center;
-                                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s; touch-action: none;">
+                                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;">
                                     <i class="fas fa-sun" style="font-size: 1.3rem; color: #bbdefb; margin-bottom: 5px;"></i>
                                     <div style="color: #e3f2fd; font-weight: bold; font-size: 0.85rem;">天界</div>
                                     <div style="color: #bbdefb; font-size: 0.7rem; margin-top: 3px;">较宽</div>
                                 </div>
                                 
                                 <!-- 人间碎片 -->
-                                <div class="puzzle-piece" id="piece-人间" data-piece="人间"
+                                <div class="puzzle-piece" id="piece-人间" data-piece="人间" draggable="true"
                                      style="width: 75px; height: 45px; cursor: grab; user-select: none;
                                             background: linear-gradient(135deg, #1b5e20, #2e7d32);
                                             border: 3px solid #66bb6a;
                                             display: flex; flex-direction: column; align-items: center; justify-content: center;
-                                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s; touch-action: none;">
+                                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;">
                                     <i class="fas fa-users" style="font-size: 1rem; color: #c8e6c9; margin-bottom: 3px;"></i>
                                     <div style="color: #e8f5e9; font-weight: bold; font-size: 0.8rem;">人间</div>
                                     <div style="color: #c8e6c9; font-size: 0.65rem; margin-top: 2px;">较窄</div>
                                 </div>
                                 
                                 <!-- 冥界碎片 -->
-                                <div class="puzzle-piece" id="piece-冥界" data-piece="冥界"
+                                <div class="puzzle-piece" id="piece-冥界" data-piece="冥界" draggable="true"
                                      style="width: 75px; height: 55px; cursor: grab; user-select: none;
                                             background: linear-gradient(135deg, #4a148c, #6a1b9a);
                                             border-radius: 0 0 10px 10px; border: 3px solid #ab47bc;
                                             display: flex; flex-direction: column; align-items: center; justify-content: center;
-                                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s; touch-action: none;">
+                                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;">
                                     <i class="fas fa-skull" style="font-size: 1rem; color: #e1bee7; margin-bottom: 3px;"></i>
                                     <div style="color: #f3e5f5; font-weight: bold; font-size: 0.8rem;">冥界</div>
                                     <div style="color: #e1bee7; font-size: 0.65rem; margin-top: 2px;">较窄</div>
@@ -1058,7 +1073,7 @@ class MaWangDuiGame {
         }, 100);
     }
     
-    // 初始化拼图交互逻辑（已修复手机端拖放问题）
+    // 初始化拼图交互逻辑
     initPuzzleInteraction() {
         const pieces = document.querySelectorAll('.puzzle-piece');
         const dropZones = document.querySelectorAll('.drop-zone');
@@ -1074,176 +1089,173 @@ class MaWangDuiGame {
             '冥界': false
         };
         
-        // 当前被拖动的元素及其偏移量
+        // 当前被拖动的元素
         let draggedPiece = null;
-        let offsetX = 0;
-        let offsetY = 0;
         
-        // 为每个碎片添加拖拽事件（同时支持鼠标和触摸）
-        pieces.forEach(piece => {
-            // 鼠标事件
-            piece.addEventListener('mousedown', startDrag);
+        // 为每个碎片添加拖拽事件
+        pieces
+.forEach(piece => {
+            piece
+.addEventListener('dragstart', (e) => {
+                // 如果已经放置正确，不能再次拖动
+                if (piece.style.opacity === '0.5') {
+                    e
+.preventDefault();
+                    return;
+                }
+                
+                draggedPiece 
+= piece;
+                e
+.dataTransfer.setData('text/plain', piece.dataset.piece);
+                piece
+.style.opacity = '0.7';
+                piece
+.style.boxShadow = '0 8px 16px rgba(0,0,0,0.6)';
+                
+                // 添加拖动效果类
+                setTimeout(() => {
+                    piece
+.style.display = 'none';
+                }, 0);
+            });
             
-            // 触摸事件（手机端）
-            piece.addEventListener('touchstart', function(e) {
-                e.preventDefault(); // 阻止默认行为，避免页面滚动
-                startDrag(e.touches[0]); // 使用第一个触摸点
-            }, { passive: false });
-            
-            // 阻止拖拽图片的默认行为
-            piece.addEventListener('dragstart', function(e) {
-                e.preventDefault();
+            piece
+.addEventListener('dragend', () => {
+                pieces
+.forEach(p => {
+                    p
+.style.opacity = '1';
+                    p
+.style.boxShadow = '0 4px 8px rgba(0,0,0,0.4)';
+                    p
+.style.display = 'flex';
+                });
+                draggedPiece 
+= null;
             });
         });
         
-        // 开始拖拽
-        function startDrag(e) {
-            const piece = e.target.closest('.puzzle-piece');
-            if (!piece) return;
-            
-            // 如果已经放置正确，不能再次拖动
-            if (piece.style.opacity === '0.5') {
-                return;
-            }
-            
-            draggedPiece = piece;
-            const rect = piece.getBoundingClientRect();
-            
-            // 计算偏移量
-            if (e.type === 'mousedown' || e.type === 'touchstart') {
-                offsetX = e.clientX - rect.left;
-                offsetY = e.clientY - rect.top;
-            }
-            
-            piece.style.opacity = '0.7';
-            piece.style.boxShadow = '0 8px 16px rgba(0,0,0,0.6)';
-            piece.style.zIndex = '1000';
-            
-            // 添加鼠标移动和触摸移动事件
-            document.addEventListener('mousemove', doDrag);
-            document.addEventListener('touchmove', handleTouchMove, { passive: false });
-            document.addEventListener('mouseup', stopDrag);
-            document.addEventListener('touchend', stopDrag);
-        }
-        
-        // 处理触摸移动
-        function handleTouchMove(e) {
-            e.preventDefault();
-            if (e.touches.length > 0) {
-                doDrag(e.touches[0]);
-            }
-        }
-        
-        // 执行拖拽
-        function doDrag(e) {
-            if (!draggedPiece) return;
-            
-            // 计算新位置
-            const x = e.clientX - offsetX;
-            const y = e.clientY - offsetY;
-            
-            // 设置新位置
-            draggedPiece.style.position = 'fixed';
-            draggedPiece.style.left = x + 'px';
-            draggedPiece.style.top = y + 'px';
-        }
-        
-        // 停止拖拽
-        function stopDrag(e) {
-            if (!draggedPiece) return;
-            
-            // 移除事件监听器
-            document.removeEventListener('mousemove', doDrag);
-            document.removeEventListener('touchmove', handleTouchMove);
-            document.removeEventListener('mouseup', stopDrag);
-            document.removeEventListener('touchend', stopDrag);
-            
-            // 检查是否放置在正确区域
-            checkDropZone();
-            
-            // 恢复样式
-            draggedPiece.style.opacity = '1';
-            draggedPiece.style.boxShadow = '0 4px 8px rgba(0,0,0,0.4)';
-            draggedPiece.style.zIndex = '';
-            
-            draggedPiece = null;
-        }
-        
-        // 检查是否放置到正确区域
-        function checkDropZone() {
-            if (!draggedPiece) return;
-            
-            const pieceRect = draggedPiece.getBoundingClientRect();
-            const pieceCenterX = pieceRect.left + pieceRect.width / 2;
-            const pieceCenterY = pieceRect.top + pieceRect.height / 2;
-            const pieceName = draggedPiece.dataset.piece;
-            
-            let placedInCorrectZone = false;
-            let targetZone = null;
-            
-            // 检查每个放置区域
-            dropZones.forEach(zone => {
-                const zoneRect = zone.getBoundingClientRect();
-                const zoneName = zone.dataset.piece;
+        // 为每个放置区域添加事件
+        dropZones
+.forEach(zone => {
+            zone
+.addEventListener('dragover', (e) => {
+                e
+.preventDefault();
+                const targetPiece = e.target.dataset.piece;
                 
-                // 检查是否重叠
-                if (pieceCenterX > zoneRect.left && 
-                    pieceCenterX < zoneRect.right &&
-                    pieceCenterY > zoneRect.top && 
-                    pieceCenterY < zoneRect.bottom) {
-                    
-                    if (zoneName === pieceName) {
-                        // 放置到正确区域
-                        placedInCorrectZone = true;
-                        targetZone = zone;
-                    } else {
-                        // 放置到错误区域
-                        showPlacementFeedback(false, `这是${pieceName}碎片，应该放在${pieceName}区域`);
-                    }
+                // 高亮显示正确的放置区域
+                if (draggedPiece && draggedPiece.dataset.piece === targetPiece) {
+                    zone
+.style.border = '2px dashed #4caf50';
+                    zone
+.style.background = 'rgba(76, 175, 80, 0.1)';
+                } else if (draggedPiece) {
+                    zone
+.style.border = '2px dashed #f44336';
+                    zone
+.style.background = 'rgba(244, 67, 54, 0.1)';
                 }
             });
             
-            if (placedInCorrectZone && targetZone) {
-                // 正确放置
-                placePieceCorrectly(draggedPiece, targetZone);
-            } else if (!placedInCorrectZone) {
-                // 没有放置到任何区域，回到原位
-                draggedPiece.style.position = '';
-                draggedPiece.style.left = '';
-                draggedPiece.style.top = '';
-            }
-        }
+            zone
+.addEventListener('dragleave', () => {
+                // 恢复原始样式
+                const pieceType = zone.dataset.piece;
+                let borderColor, bgColor;
+                
+                if (pieceType === '天界') {
+                    borderColor 
+= 'rgba(187, 222, 251, 0.3)';
+                } else if (pieceType === '人间') {
+                    borderColor 
+= 'rgba(200, 230, 201, 0.3)';
+                } else {
+                    borderColor 
+= 'rgba(225, 190, 231, 0.3)';
+                }
+                
+                zone
+.style.border = `2px dashed ${borderColor}`;
+                zone
+.style.background = 'transparent';
+            });
+            
+            zone
+.addEventListener('drop', (e) => {
+                e
+.preventDefault();
+                const zonePiece = zone.dataset.piece;
+                const draggedPieceName = draggedPiece ? draggedPiece.dataset.piece : null;
+                
+                // 检查是否匹配
+                if (draggedPieceName && draggedPieceName === zonePiece) {
+                    // 放置正确
+                    placePieceCorrectly(draggedPiece, zone);
+                } else if (draggedPieceName) {
+                    // 放置错误
+                    showPlacementFeedback(false, `这是${draggedPieceName}碎片，应该放在${draggedPieceName}区域`);
+                }
+                
+                // 恢复区域样式
+                const pieceType = zone.dataset.piece;
+                let borderColor;
+                if (pieceType === '天界') {
+                    borderColor 
+= 'rgba(187, 222, 251, 0.3)';
+                } else if (pieceType === '人间') {
+                    borderColor 
+= 'rgba(200, 230, 201, 0.3)';
+                } else {
+                    borderColor 
+= 'rgba(225, 190, 231, 0.3)';
+                }
+                
+                zone
+.style.border = `2px dashed ${borderColor}`;
+                zone
+.style.background = 'transparent';
+            });
+        });
         
         // 正确放置碎片
         function placePieceCorrectly(piece, zone) {
             const pieceName = piece.dataset.piece;
             
             // 标记为已放置
-            placedPieces[pieceName] = true;
+            placedPieces
+[pieceName] = true;
             
-            // 获取容器和区域的相对位置
-            const container = document.getElementById('puzzle-container');
+            // 移动碎片到放置区域
             const zoneRect = zone.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
+            const containerRect = zone.parentElement.getBoundingClientRect();
             
-            // 计算在容器内的相对位置
-            const relativeLeft = zoneRect.left - containerRect.left;
-            const relativeTop = zoneRect.top - containerRect.top;
+            // 计算相对位置
+            piece
+.style.position = 'absolute';
+            piece
+.style.top = `${zoneRect.top - containerRect.top}px`;
+            piece
+.style.left = `${zoneRect.left - containerRect.left}px`;
+            piece
+.style.width = `${zoneRect.width}px`;
+            piece
+.style.height = `${zoneRect.height}px`;
+            piece
+.style.cursor = 'default';
+            piece
+.style.opacity = '0.5'; // 半透明表示已放置
+            piece
+.style.boxShadow = '0 0 20px rgba(76, 175, 80, 0.7)';
+            piece
+.style.zIndex = '10';
+            piece
+.style.pointerEvents = 'none';
             
-            // 设置碎片位置（在容器内）
-            piece.style.position = 'absolute';
-            piece.style.left = relativeLeft + 'px';
-            piece.style.top = relativeTop + 'px';
-            piece.style.width = zoneRect.width + 'px';
-            piece.style.height = zoneRect.height + 'px';
-            piece.style.cursor = 'default';
-            piece.style.opacity = '0.8';
-            piece.style.boxShadow = '0 0 20px rgba(76, 175, 80, 0.7)';
-            piece.style.zIndex = '10';
-            piece.style.pointerEvents = 'none';
-            
-            // 将碎片移动到容器中
-            container.appendChild(piece);
+            // 将碎片移动到轮廓容器中
+            zone
+.parentElement.appendChild(piece);
             
             // 更新显示
             updatePlacedDisplay();
@@ -1259,36 +1271,51 @@ class MaWangDuiGame {
         function updatePlacedDisplay() {
             if (!placedContainer) return;
             
-            placedContainer.innerHTML = '';
+            placedContainer
+.innerHTML = '';
             
             // 按顺序显示已放置的碎片
             const order = ['天界', '人间', '冥界'];
             let hasPlaced = false;
             
-            order.forEach(pieceName => {
+            order
+.forEach(pieceName => {
                 if (placedPieces[pieceName]) {
-                    hasPlaced = true;
+                    hasPlaced 
+= true;
                     
                     const pieceDiv = document.createElement('div');
                     let bgColor, icon, textColor;
                     
                     if (pieceName === '天界') {
-                        bgColor = '#1a237e';
-                        icon = 'fas fa-sun';
-                        textColor = '#bbdefb';
+                        bgColor 
+= '#1a237e';
+                        icon 
+= 'fas fa-sun';
+                        textColor 
+= '#bbdefb';
                     } else if (pieceName === '人间') {
-                        bgColor = '#1b5e20';
-                        icon = 'fas fa-users';
-                        textColor = '#c8e6c9';
+                        bgColor 
+= '#1b5e20';
+                        icon 
+= 'fas fa-users';
+                        textColor 
+= '#c8e6c9';
                     } else {
-                        bgColor = '#4a148c';
-                        icon = 'fas fa-skull';
-                        textColor = '#e1bee7';
+                        bgColor 
+= '#4a148c';
+                        icon 
+= 'fas fa-skull';
+                        textColor 
+= '#e1bee7';
                     }
                     
-                    pieceDiv.style.cssText = `
+                    pieceDiv
+.style.cssText = `
                         padding: 8px 12px;
-                        background: ${bgColor};
+                        background: 
+${bgColor}
+;
                         color: white;
                         border-radius: 6px;
                         font-weight: bold;
@@ -1299,19 +1326,26 @@ class MaWangDuiGame {
                         font-size: 0.85rem;
                     `;
                     
-                    pieceDiv.innerHTML = `
-                        <i class="${icon}" style="color: ${textColor};"></i>
-                        <span>${pieceName}</span>
+                    pieceDiv
+.innerHTML = `
+                        <i class="
+${icon}" style="color: ${textColor}
+;"></i>
+                        <span>
+${pieceName}
+</span>
                         <i class="fas fa-check" style="color: #4caf50; margin-left: 4px; font-size: 0.8rem;"></i>
                     `;
                     
-                    placedContainer.appendChild(pieceDiv);
+                    placedContainer
+.appendChild(pieceDiv);
                 }
             });
             
             // 如果没有放置任何碎片
             if (!hasPlaced) {
-                placedContainer.innerHTML = `
+                placedContainer
+.innerHTML = `
                     <div style="padding: 12px; color: rgba(255, 255, 255, 0.4); font-style: italic; font-size: 0.9rem;">
                         请将碎片拖放到上方轮廓中
                     </div>
@@ -1324,9 +1358,12 @@ class MaWangDuiGame {
             const allPlaced = Object.values(placedPieces).every(placed => placed);
             
             if (allPlaced && submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-trophy"></i> 拼图完成！点击继续';
-                submitBtn.style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
+                submitBtn
+.disabled = false;
+                submitBtn
+.innerHTML = '<i class="fas fa-trophy"></i> 拼图完成！点击继续';
+                submitBtn
+.style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
                 
                 // 显示完成动画
                 showPlacementFeedback(true, '恭喜！你成功还原了T形帛画！', true);
@@ -1337,41 +1374,63 @@ class MaWangDuiGame {
         function showPlacementFeedback(isSuccess, message, isFinal = false) {
             // 创建反馈元素
             const feedback = document.createElement('div');
-            feedback.style.cssText = `
+            feedback
+.style.cssText = `
                 position: fixed;
-                top: ${isFinal ? '40%' : '20%'};
+                top: 
+${isFinal ? '40%' : '20%'}
+;
                 left: 50%;
                 transform: translateX(-50%);
-                background: ${isSuccess ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)'};
+                background: 
+${isSuccess ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)'}
+;
                 color: white;
-                padding: ${isFinal ? '20px 30px' : '12px 20px'};
-                border-radius: ${isFinal ? '15px' : '10px'};
+                padding: 
+${isFinal ? '20px 30px' : '12px 20px'}
+;
+                border-radius: 
+${isFinal ? '15px' : '10px'}
+;
                 z-index: 2000;
                 font-weight: bold;
                 box-shadow: 0 6px 20px rgba(0,0,0,0.4);
                 text-align: center;
                 max-width: 80%;
                 animation: fadeIn 0.3s;
-                font-size: ${isFinal ? '1.1rem' : '0.95rem'};
-                border: ${isFinal ? '3px solid #ffd700' : 'none'};
+                font-size: 
+${isFinal ? '1.1rem' : '0.95rem'}
+;
+                border: 
+${isFinal ? '3px solid #ffd700' : 'none'}
+;
             `;
             
-            feedback.innerHTML = `
-                <i class="fas fa-${isSuccess ? (isFinal ? 'trophy' : 'check-circle') : 'exclamation-triangle'}" 
-                   style="margin-right: 10px; ${isFinal ? 'font-size: 1.3rem;' : ''}"></i>
+            feedback
+.innerHTML = `
+                <i class="fas fa-
+${isSuccess ? (isFinal ? 'trophy' : 'check-circle') : 'exclamation-triangle'}
+" 
+                   style="margin-right: 10px; 
+${isFinal ? 'font-size: 1.3rem;' : ''}
+"></i>
                 ${message}
             `;
             
-            document.body.appendChild(feedback);
+            document
+.body.appendChild(feedback);
             
             // 自动移除
             setTimeout(() => {
                 if (feedback.parentNode) {
-                    feedback.style.opacity = '0';
-                    feedback.style.transition = 'opacity 0.5s';
+                    feedback
+.style.opacity = '0';
+                    feedback
+.style.transition = 'opacity 0.5s';
                     setTimeout(() => {
                         if (feedback.parentNode) {
-                            document.body.removeChild(feedback);
+                            document
+.body.removeChild(feedback);
                         }
                     }, 500);
                 }
@@ -1380,72 +1439,83 @@ class MaWangDuiGame {
         
         // 重置按钮功能
         if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
+            resetBtn
+.addEventListener('click', () => {
                 // 重置状态
-                placedPieces = {
+                placedPieces 
+= {
                     '天界': false,
                     '人间': false,
                     '冥界': false
                 };
                 
                 // 重置所有碎片
-                pieces.forEach(piece => {
+                pieces
+.forEach(piece => {
                     // 将碎片移回原容器
-                    document.getElementById('puzzle-pieces').appendChild(piece);
+                    document
+.getElementById('puzzle-pieces').appendChild(piece);
                     
                     // 重置样式
-                    piece.style.cssText = '';
+                    piece
+.style.cssText = '';
                     
                     // 恢复原始样式
                     const pieceName = piece.dataset.piece;
                     if (pieceName === '天界') {
-                        piece.style.cssText = `
+                        piece
+.style.cssText = `
                             width: 110px; height: 65px; cursor: grab; user-select: none;
                             background: linear-gradient(135deg, #1a237e, #283593);
                             border-radius: 10px 10px 0 0; border: 3px solid #5c6bc0;
                             display: flex; flex-direction: column; align-items: center; justify-content: center;
-                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s; touch-action: none;
+                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;
                         `;
                     } else if (pieceName === '人间') {
-                        piece.style.cssText = `
+                        piece
+.style.cssText = `
                             width: 75px; height: 45px; cursor: grab; user-select: none;
                             background: linear-gradient(135deg, #1b5e20, #2e7d32);
                             border: 3px solid #66bb6a;
                             display: flex; flex-direction: column; align-items: center; justify-content: center;
-                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s; touch-action: none;
+                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;
                         `;
                     } else {
-                        piece.style.cssText = `
+                        piece
+.style.cssText = `
                             width: 75px; height: 55px; cursor: grab; user-select: none;
                             background: linear-gradient(135deg, #4a148c, #6a1b9a);
                             border-radius: 0 0 10px 10px; border: 3px solid #ab47bc;
                             display: flex; flex-direction: column; align-items: center; justify-content: center;
-                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s; touch-action: none;
+                            box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;
                         `;
                     }
                     
-                    // 重新绑定事件
-                    piece.addEventListener('mousedown', startDrag);
-                    piece.addEventListener('touchstart', function(e) {
-                        e.preventDefault();
-                        startDrag(e.touches[0]);
-                    }, { passive: false });
+                    // 恢复拖拽功能
+                    piece
+.draggable = true;
                 });
                 
                 // 重置放置区域样式
-                dropZones.forEach(zone => {
+                dropZones
+.forEach(zone => {
                     const pieceType = zone.dataset.piece;
                     let borderColor;
                     if (pieceType === '天界') {
-                        borderColor = 'rgba(187, 222, 251, 0.3)';
+                        borderColor 
+= 'rgba(187, 222, 251, 0.3)';
                     } else if (pieceType === '人间') {
-                        borderColor = 'rgba(200, 230, 201, 0.3)';
+                        borderColor 
+= 'rgba(200, 230, 201, 0.3)';
                     } else {
-                        borderColor = 'rgba(225, 190, 231, 0.3)';
+                        borderColor 
+= 'rgba(225, 190, 231, 0.3)';
                     }
                     
-                    zone.style.border = `2px dashed ${borderColor}`;
-                    zone.style.background = 'transparent';
+                    zone
+.style.border = `2px dashed ${borderColor}`;
+                    zone
+.style.background = 'transparent';
                 });
                 
                 // 更新显示
@@ -1453,9 +1523,12 @@ class MaWangDuiGame {
                 
                 // 重置提交按钮
                 if (submitBtn) {
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> 提交任务';
-                    submitBtn.style.background = '';
+                    submitBtn
+.disabled = true;
+                    submitBtn
+.innerHTML = '<i class="fas fa-check-circle"></i> 提交任务';
+                    submitBtn
+.style.background = '';
                 }
                 
                 // 显示重置提示
@@ -1465,7 +1538,8 @@ class MaWangDuiGame {
         
         // 提示按钮功能
         if (hintBtn) {
-            hintBtn.addEventListener('click', () => {
+            hintBtn
+.addEventListener('click', () => {
                 this.showDialogue({
                     speakerName: '提示',
                     speakerTitle: '游戏提示',
@@ -1493,7 +1567,8 @@ class MaWangDuiGame {
         
         // 确保提交按钮初始为禁用状态
         if (submitBtn) {
-            submitBtn.disabled = true;
+            submitBtn
+.disabled = true;
         }
     }
         // 第四章：文物修复室
