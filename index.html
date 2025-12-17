@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>马王堆秘影 - 沉浸式Web游戏</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 加载指示器 -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="spinner">
+                <div class="spinner-circle"></div>
+            </div>
+            <h3>正在加载游戏...</h3>
+            <p id="loading-text">初始化游戏资源</p>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <!-- 游戏开始界面 -->
+        <div id="start-screen" class="screen">
+            <div class="title-container">
+                <h1 class="game-title">马王堆秘影</h1>
+                <h2 class="game-subtitle">千年汉墓的沉浸式探秘之旅</h2>
+                <div class="game-info">
+                    <p><i class="fas fa-users"></i> 小组活动作品 | 中国传统文化探访</p>
+                    <p><i class="fas fa-history"></i> 基于马王堆汉墓真实考古发现</p>
+                    <p><i class="fas fa-graduation-cap"></i> 《中国文化概论》课程实践</p>
+                </div>
+            </div>
+            
+            <div class="start-options">
+                <button id="start-game" class="btn-primary">
+                    <i class="fas fa-play-circle"></i> 开始游戏
+                </button>
+                <button id="how-to-play" class="btn-secondary">
+                    <i class="fas fa-question-circle"></i> 游戏指南
+                </button>
+                <button id="team-info" class="btn-secondary">
+                    <i class="fas fa-users"></i> 小组信息
+                </button>
+            </div>
+            
+            <div class="hint">
+                <p><i class="fas fa-mobile-alt"></i> 最佳体验：请使用手机或平板竖屏模式</p>
+            </div>
+        </div>
+        
+        <!-- 游戏指南界面 -->
+        <div id="guide-screen" class="screen">
+            <div class="screen-header">
+                <h2><i class="fas fa-book-open"></i> 游戏指南</h2>
+                <button id="back-from-guide" class="btn-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="guide-content">
+                <div class="guide-section">
+                    <h3><i class="fas fa-gamepad"></i> 游戏玩法</h3>
+                    <p>你将扮演一名在《中国文化概论》课堂上打瞌睡的大学生，在梦境中穿越到1972年的马王堆汉墓考古现场。</p>
+                    <p>通过互动解谜探索墓室，学习文物知识，最终在课堂醒来后回答教授的提问。</p>
+                </div>
+                
+                <div class="guide-section">
+                    <h3><i class="fas fa-layer-group"></i> 游戏章节</h3>
+                    <ol>
+                        <li><strong>序幕：</strong>课堂入睡，穿越开始</li>
+                        <li><strong>第一章：</strong>防空洞发现神秘气体</li>
+                        <li><strong>第二章：</strong>墓道入口的层层防御</li>
+                        <li><strong>第三章：</strong>帛画之谜与辛追夫人</li>
+                        <li><strong>第四章：</strong>文物修复室的无字天书</li>
+                        <li><strong>第五章：</strong>乐器库的弦外之音</li>
+                        <li><strong>终章：</strong>数字实验室的终极问答</li>
+                        <li><strong>终幕：</strong>课堂惊醒，回答问题</li>
+                    </ol>
+                </div>
+                
+                <div class="guide-section">
+                    <h3><i class="fas fa-star"></i> 学习目标</h3>
+                    <ul>
+                        <li>了解马王堆汉墓的考古发现过程</li>
+                        <li>认识汉代丧葬文化、工艺技术和生活习俗</li>
+                        <li>掌握20个关于马王堆的核心知识</li>
+                        <li>体验文物修复与考古解谜的过程</li>
+                    </ul>
+                </div>
+                
+                <div class="guide-section">
+                    <h3><i class="fas fa-trophy"></i> 如何成功</h3>
+                    <p>仔细观察每个场景的细节，与NPC对话获取线索，完成互动任务。在终章回答所有问题，展现你在梦境中学到的知识！</p>
+                </div>
+            </div>
+            
+            <div class="guide-footer">
+                <button id="start-from-guide" class="btn-primary">
+                    <i class="fas fa-rocket"></i> 开始游戏
+                </button>
+            </div>
+        </div>
+        
+        <!-- 小组信息界面 -->
+        <div id="team-screen" class="screen">
+            <div class="screen-header">
+                <h2><i class="fas fa-users"></i> 小组信息</h2>
+                <button id="back-from-team" class="btn-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="team-content">
+                <div class="team-section">
+                    <h3><i class="fas fa-project-diagram"></i> 项目介绍</h3>
+                    <p>本游戏是《中国文化概论》课程的实践作业，围绕马王堆汉墓主题，结合考古学、历史学和数字技术，创作沉浸式学习体验。</p>
+                </div>
+                
+                <div class="team-section">
+                    <h3><i class="fas fa-user-graduate"></i> 小组成员（示例）</h3>
+                    <div class="members-grid">
+                        <div class="member">
+                            <div class="member-avatar"><i class="fas fa-user"></i></div>
+                            <div class="member-info">
+                                <h4>李明</h4>
+                                <p>组长 / 剧情设计</p>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <div class="member-avatar"><i class="fas fa-user"></i></div>
+                            <div class="member-info">
+                                <h4>张华</h4>
+                                <p>程序开发</p>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <div class="member-avatar"><i class="fas fa-user"></i></div>
+                            <div class="member-info">
+                                <h4>王芳</h4>
+                                <p>美术设计</p>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <div class="member-avatar"><i class="fas fa-user"></i></div>
+                            <div class="member-info">
+                                <h4>赵强</h4>
+                                <p>历史考证</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-section">
+                    <h3><i class="fas fa-lightbulb"></i> 创新点</h3>
+                    <ul>
+                        <li>梦境叙事结构连接古今</li>
+                        <li>互动解谜融合知识问答</li>
+                        <li>2.5D手绘美术风格</li>
+                        <li>移动端优先的Web技术</li>
+                        <li>基于真实考古发现的教育内容</li>
+                    </ul>
+                </div>
+                
+                <div class="team-section">
+                    <h3><i class="fas fa-calendar-alt"></i> 课程信息</h3>
+                    <p><strong>课程：</strong>中国文化概论</p>
+                    <p><strong>主题：</strong>中国古代科技、艺术与哲学</p>
+                    <p><strong>提交时间：</strong>12月28日24点前</p>
+                </div>
+            </div>
+            
+            <div class="team-footer">
+                <button id="start-from-team" class="btn-primary">
+                    <i class="fas fa-play-circle"></i> 开始游戏
+                </button>
+            </div>
+        </div>
+        
+        <!-- 游戏主界面 -->
+        <div id="game-screen" class="screen">
+            <!-- 转场文字层 -->
+            <div id="transition-text" class="screen-overlay">
+                <div class="transition-content">
+                    <p id="transition-line1"></p>
+                    <p id="transition-line2"></p>
+                    <p id="transition-line3"></p>
+                    <p id="transition-line4"></p>
+                    <p id="transition-line5"></p>
+                    <button id="continue-transition" class="btn-primary">继续 <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- 场景背景 -->
+            <div id="scene-background">
+                <!-- 交互区域将在这里动态生成 -->
+            </div>
+            
+            <!-- 角色对话层 -->
+            <div id="dialogue-container" class="screen-overlay">
+                <div class="dialogue-header">
+                    <div id="speaker-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div id="speaker-info">
+                        <h3 id="speaker-name">角色名</h3>
+                        <p id="speaker-title">身份描述</p>
+                    </div>
+                </div>
+                <div class="dialogue-content">
+                    <p id="dialogue-text">这里是对话内容...</p>
+                </div>
+                <div class="dialogue-choices" id="dialogue-choices">
+                    <!-- 对话选项动态生成 -->
+                </div>
+                <div class="dialogue-footer">
+                    <button id="next-dialogue" class="btn-primary">
+                        继续 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 互动任务层 -->
+            <div id="task-container" class="screen-overlay">
+                <div class="task-header">
+                    <h3><i class="fas fa-tasks"></i> 互动任务</h3>
+                    <p id="task-description">任务描述</p>
+                </div>
+                <div class="task-content" id="task-content">
+                    <!-- 任务内容动态生成 -->
+                </div>
+                <div class="task-footer">
+                    <button id="submit-task" class="btn-primary" disabled>
+                        <i class="fas fa-check-circle"></i> 提交任务
+                    </button>
+                    <button id="cancel-task" class="btn-secondary">
+                        <i class="fas fa-times-circle"></i> 取消
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 文物展示层 -->
+            <div id="artifact-container" class="screen-overlay">
+                <div class="artifact-header">
+                    <h3><i class="fas fa-history"></i> 文物展示</h3>
+                    <p id="artifact-name">文物名称</p>
+                </div>
+                <div class="artifact-content">
+                    <div class="artifact-image" id="artifact-image">
+                        <!-- 文物图片 -->
+                    </div>
+                    <div class="artifact-info" id="artifact-info">
+                        <!-- 文物信息 -->
+                    </div>
+                </div>
+                <div class="artifact-footer">
+                    <button id="close-artifact" class="btn-primary">
+                        <i class="fas fa-times"></i> 关闭
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 答题界面 -->
+            <div id="quiz-container" class="screen-overlay">
+                <div class="quiz-header">
+                    <h3><i class="fas fa-question-circle"></i> 课堂提问</h3>
+                    <div class="quiz-progress">
+                        <span id="current-question">1</span>/<span id="total-questions">20</span>
+                    </div>
+                </div>
+                <div class="quiz-content">
+                    <h4 id="quiz-question">问题内容</h4>
+                    <div class="quiz-options" id="quiz-options">
+                        <!-- 选项动态生成 -->
+                    </div>
+                    <div class="quiz-feedback" id="quiz-feedback">
+                        <p id="feedback-text"></p>
+                        <div class="quiz-explanation" id="quiz-explanation">
+                            <!-- 答案解析 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-footer">
+                    <button id="submit-quiz" class="btn-primary" disabled>
+                        <i class="fas fa-paper-plane"></i> 提交答案
+                    </button>
+                    <button id="next-quiz" class="btn-primary">
+                        下一题 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 游戏UI控制层 -->
+            <div id="game-ui">
+                <div class="ui-top">
+                    <div class="chapter-info">
+                        <h3 id="current-chapter">序幕：课堂入睡</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill" style="width: 5%;"></div>
+                            </div>
+                            <span class="progress-text" id="progress-text">5%</span>
+                        </div>
+                    </div>
+                    <button id="menu-button" class="btn-icon">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                
+                <div class="ui-center">
+                    <div class="interaction-hint" id="interaction-hint">
+                        <i class="fas fa-hand-point-up"></i> <span id="hint-text">点击屏幕开始梦境穿越</span>
+                    </div>
+                </div>
+                
+                <div class="ui-bottom">
+                    <button id="inventory-button" class="btn-icon" title="文物图鉴">
+                        <i class="fas fa-scroll"></i>
+                    </button>
+                    <button id="hint-button" class="btn-icon" title="提示">
+                        <i class="fas fa-lightbulb"></i>
+                    </button>
+                    <button id="map-button" class="btn-icon" title="章节地图">
+                        <i class="fas fa-map"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 游戏菜单 -->
+            <div id="game-menu" class="screen-overlay">
+                <div class="menu-header">
+                    <h3><i class="fas fa-gamepad"></i> 游戏菜单</h3>
+                    <button id="close-menu" class="btn-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="menu-content">
+                    <button id="resume-game" class="menu-btn">
+                        <i class="fas fa-play"></i> 继续游戏
+                    </button>
+                    <button id="restart-chapter" class="menu-btn">
+                        <i class="fas fa-redo"></i> 重玩本章
+                    </button>
+                    <button id="view-guide" class="menu-btn">
+                        <i class="fas fa-book"></i> 查看指南
+                    </button>
+                    <button id="view-team" class="menu-btn">
+                        <i class="fas fa-users"></i> 小组信息
+                    </button>
+                    <button id="exit-game" class="menu-btn">
+                        <i class="fas fa-sign-out-alt"></i> 返回首页
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 文物图鉴 -->
+            <div id="inventory-menu" class="screen-overlay">
+                <div class="inventory-header">
+                    <h3><i class="fas fa-scroll"></i> 文物图鉴</h3>
+                    <button id="close-inventory" class="btn-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="inventory-content" id="inventory-items">
+                    <!-- 文物图鉴动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 章节地图 -->
+            <div id="map-menu" class="screen-overlay">
+                <div class="map-header">
+                    <h3><i class="fas fa-map"></i> 章节地图</h3>
+                    <button id="close-map" class="btn-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="map-content">
+                    <div class="map-visual">
+                        <div class="map-line">
+                            <div class="map-node active" data-chapter="0">
+                                <span>序幕</span>
+                                <p>课堂入睡</p>
+                            </div>
+                            <div class="map-line-connector"></div>
+                            <div class="map-node" data-chapter="1">
+                                <span>第一章</span>
+                                <p>神秘气体</p>
+                            </div>
+                            <div class="map-line-connector"></div>
+                            <div class="map-node" data-chapter="2">
+                                <span>第二章</span>
+                                <p>九层之台</p>
+                            </div>
+                            <div class="map-line-connector"></div>
+                            <div class="map-node" data-chapter="3">
+                                <span>第三章</span>
+                                <p>帛画之谜</p>
+                            </div>
+                        </div>
+                        <div class="map-line">
+                            <div class="map-node" data-chapter="4">
+                                <span>第四章</span>
+                                <p>无字天书</p>
+                            </div>
+                            <div class="map-line-connector"></div>
+                            <div class="map-node" data-chapter="5">
+                                <span>第五章</span>
+                                <p>弦外之音</p>
+                            </div>
+                            <div class="map-line-connector"></div>
+                            <div class="map-node" data-chapter="6">
+                                <span>终章</span>
+                                <p>千年回响</p>
+                            </div>
+                            <div class="map-line-connector"></div>
+                            <div class="map-node" data-chapter="7">
+                                <span>终幕</span>
+                                <p>课堂惊醒</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-info">
+                        <p id="map-chapter-name">当前章节：序幕</p>
+                        <p id="map-chapter-desc">在《中国文化概论》课堂上打瞌睡...</p>
+                        <button id="go-to-chapter" class="btn-primary" disabled>
+                            前往该章节
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 游戏结束界面 -->
+        <div id="end-screen" class="screen">
+            <div class="end-container">
+                <h2 class="end-title"><i class="fas fa-graduation-cap"></i> 游戏完成！</h2>
+                <div class="end-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="correct-answers">0</div>
+                        <div class="stat-label">正确回答</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-questions-end">20</div>
+                        <div class="stat-label">总问题数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="score-percentage">0%</div>
+                        <div class="stat-label">得分率</div>
+                    </div>
+                </div>
+                
+                <div class="end-message">
+                    <p id="end-message-text">恭喜你完成了马王堆汉墓的探索之旅！</p>
+                    <div class="achievement">
+                        <i class="fas fa-award"></i>
+                        <p>你已解锁<span id="artifacts-found">0</span>件文物知识</p>
+                    </div>
+                </div>
+                
+                <div class="end-actions">
+                    <button id="restart-game" class="btn-primary">
+                        <i class="fas fa-redo"></i> 重新开始
+                    </button>
+                    <button id="back-to-home" class="btn-secondary">
+                        <i class="fas fa-home"></i> 返回首页
+                    </button>
+                </div>
+                
+                <div class="end-note">
+                    <p><i class="fas fa-info-circle"></i> 本游戏基于真实考古发现创作，用于《中国文化概论》课程实践</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
