@@ -152,7 +152,7 @@ const gameData = {
             id: 11,
             question: '一号墓的辛追夫人、二号墓的利苍、三号墓的年轻墓主，他们之间的家庭关系是怎样的？',
             options: [
-                'A. 辛追是利苍的妻子，年轻墓主是他们的儿子（利豨）',
+                'A. 辛追是利苍的妻子，年轻墓主是他们的儿子',
                 'B. 辛追是利苍的母亲，年轻墓主是利苍的儿子',
                 'C. 辛追是利苍的女儿，年轻墓主是利苍的兄弟',
                 'D. 他们没有血缘关系，只是同事'
@@ -170,14 +170,14 @@ const gameData = {
         {
             id: 13,
             question: '漆盘上常写的"君幸食"三个字，用现代话翻译过来是什么意思？',
-            options: ['A. "小心有毒"', 'B. "欢迎光临"', 'C. "吃好喝好"（劝君进食）', 'D. "皇家专用"'],
+            options: ['A. "小心有毒"', 'B. "欢迎光临"', 'C. "吃好喝好"', 'D. "皇家专用"'],
             correct: 2,
             explanation: '"君幸食"是汉代常见的漆器铭文，意为"请您用好餐"，体现了主人的好客之情。'
         },
         {
             id: 14,
             question: '现代法医推测，辛追夫人去世的直接原因很可能是什么？',
-            options: ['A. 吃甜瓜过量导致消化不良（或瓜籽堵塞气管）', 'B. 战争受伤', 'C. 意外坠楼', 'D. 被毒杀'],
+            options: ['A. 吃甜瓜', 'B. 战争受伤', 'C. 意外坠楼', 'D. 被毒杀'],
             correct: 0,
             explanation: '在辛追的食道和胃里发现了138颗甜瓜子，推测她可能是吃了大量甜瓜后引发急病去世。'
         },
@@ -220,7 +220,7 @@ const gameData = {
             id: 20,
             question: '为何如此奢华的马王堆汉墓几乎没有金陪葬品？',
             options: [
-                'A. 当时汉代法律（受文帝影响）规定陵墓不用金银铜锡，以陶木代替',
+                'A. 法律规定',
                 'B. 被盗墓贼偷光了',
                 'C. 家族贫穷',
                 'D. 献给皇帝了'
@@ -324,6 +324,7 @@ class MaWangDuiGame {
         this.state = new GameState();
         this.currentScene = null;
         this.isTransitioning = false;
+	this.isFinalAgeQuestion = false;
         
         // 初始化游戏
         this.init();
@@ -613,7 +614,7 @@ class MaWangDuiGame {
     
     // 序幕：课堂入睡
     playPrologue() {
-        this.showInteractionHint('点击屏幕开始梦境穿越');
+        this.showInteractionHint('请点击屏幕つ📲');
         
         // 设置场景点击事件
         this.currentScene = {
@@ -908,7 +909,7 @@ class MaWangDuiGame {
                 text: '此画载我升天之路，你想仔细研究它的结构吗？',
                 choices: [
                     { 
-                        text: 'T形帛画', 
+                        text: 'T形帛画（部分机型可能不能正常进行互动任务，可以尝试点击取消后使用右下角地图跳转）', 
                         action: () => this.startTShapePuzzle() 
                     }
                 ]
@@ -1602,7 +1603,7 @@ ${isFinal ? 'font-size: 1.3rem;' : ''}
                         { text: '这个印章是？', action: () => this.showQuizInChapter(4) },
                         { text: '素纱单衣有多重？', action: () => this.showQuizInChapter(6) },
                         { text: '《驻军图》是什么？', action: () => this.showQuizInChapter(10) },
-                        { text: '继续探索', action: () => this.advanceToChapter(5) }
+                        { text: '继续探索（前往下一章）', action: () => this.advanceToChapter(5) }
                     ]
                 });
             }
@@ -1631,10 +1632,9 @@ ${isFinal ? 'font-size: 1.3rem;' : ''}
                     avatarIcon: 'fas fa-ghost',
                     text: '听，二十五弦瑟自鸣而响...这是一张珍贵的西汉瑟，可惜部分琴弦断裂了，需要修复才能重新奏响...',
                     choices: [
-                        { text: '我想修复二十五弦瑟', action: () => this.startSeRepairTask() },
+                        { text: '修复二十五弦瑟', action: () => this.startSeRepairTask() },
                     
-                        { text: '继续前进', action: () => this.advanceToChapter(6) }
-                    ]
+                                          ]
                 });
             }
         });
@@ -2358,7 +2358,7 @@ ${isFinal ? 'font-size: 1.3rem;' : ''}
                 { text: '查看线索二', action: () => this.showClue(2) },
                 { text: '查看线索三', action: () => this.showClue(3) },
                 { text: '查看线索四', action: () => this.showClue(4) },
-                { text: '已经看完线索，开始问答', action: () => this.startFinalQuiz() }
+                { text: '已经看完线索，开始问答（回答完请点击右下角地图前往终幕）', action: () => this.startFinalQuiz() }
             ]
         });
     }
@@ -2479,110 +2479,151 @@ ${isFinal ? 'font-size: 1.3rem;' : ''}
     
     // 修改后的submitQuiz方法中的相关部分
     submitQuiz() {
-        const selectedOption = document.querySelector('.quiz-option.selected');
-        if (!selectedOption) return;
-        
-        const selectedIndex = parseInt(selectedOption.dataset.index);
-        const quiz = this.gameData.quizzes[this.currentQuizIndex];
-        const isCorrect = selectedIndex === quiz.correct;
-        
-        // 记录答案
-        this.quizAnswers.push({
-            questionId: quiz.id,
-            selected: selectedIndex,
-            correct: isCorrect
-        });
-        
-        // 更新分数
-        if (isCorrect) {
-            this.score++;
+    const selectedOption = document.querySelector('.quiz-option.selected');
+    if (!selectedOption) return;
+    
+    const selectedIndex = parseInt(selectedOption.dataset.index);
+    const quiz = gameData.quizzes[this.state.currentQuizIndex];
+    const isCorrect = selectedIndex === quiz.correct;
+    
+    // 记录答案
+    this.state.addQuizAnswer(quiz.id, selectedIndex, isCorrect);
+    
+    // 显示反馈
+    document.getElementById('feedback-text').textContent = isCorrect ? 
+        '回答正确！' : '回答错误。';
+    
+    document.getElementById('quiz-explanation').innerHTML = `
+        <p><strong>正确答案：</strong>${quiz.options[quiz.correct]}</p>
+        <p><strong>解析：</strong>${quiz.explanation}</p>
+    `;
+    
+    // 标记正确和错误的选项
+    document.querySelectorAll('.quiz-option').forEach((option, index) => {
+        if (index === quiz.correct) {
+            option.classList.add('correct');
+        } else if (index === selectedIndex && !isCorrect) {
+            option.classList.add('incorrect');
         }
-        
-        // 显示反馈
-        document.getElementById('feedback-text').textContent = isCorrect ? 
-            '回答正确！' : '回答错误。';
-        
-        document.getElementById('quiz-explanation').innerHTML = `
-            <p><strong>正确答案：</strong>${quiz.options[quiz.correct]}</p>
-            <p><strong>解析：</strong>${quiz.explanation}</p>
-        `;
-        
-        // 标记正确和错误的选项
-        document.querySelectorAll('.quiz-option').forEach((option, index) => {
-            if (index === quiz.correct) {
-                option.classList.add('correct');
-            } else if (index === selectedIndex && !isCorrect) {
-                option.classList.add('incorrect');
-            }
-            option.style.pointerEvents = 'none';
-        });
-        
-        // 显示反馈区域
-        document.getElementById('quiz-feedback').classList.remove('hidden');
-        
-        // 隐藏提交按钮，显示下一题按钮
-        document.getElementById('submit-quiz').classList.add('hidden');
-        document.getElementById('next-quiz').classList.remove('hidden');
+        option.style.pointerEvents = 'none';
+    });
+    
+    // 显示反馈区域
+    document.getElementById('quiz-feedback').classList.add('active');
+    
+    // 隐藏提交按钮，显示下一题按钮
+    document.getElementById('submit-quiz').style.display = 'none';
+    document.getElementById('next-quiz').style.display = 'block';
+    
+    // ========== 新增代码：如果是终章中的年龄问题，特殊处理 ==========
+    // 检查是否是终章中的年龄问题（第12题）
+    if (this.state.currentChapter === 6 && quiz.id === 12) {
+        console.log('终章年龄问题已回答，准备跳转到终幕');
+        // 修改下一题按钮的文本和事件
+        const nextButton = document.getElementById('next-quiz');
+        nextButton.innerHTML = '回到现实 <i class="fas fa-arrow-right"></i>';
+        // 存储这个特殊状态
+        this.isFinalAgeQuestion = true;
     }
+}
+
+
     
     // 修改后的nextQuiz方法
-    nextQuiz() {
-        // 隐藏答题界面
-        document.getElementById('quiz-container').classList.remove('active');
+nextQuiz() {
+    // 隐藏答题界面
+    document.getElementById('quiz-container').classList.remove('active');
+    
+    // ========== 新增代码：终章年龄问题回答后的跳转 ==========
+    if (this.isFinalAgeQuestion) {
+        console.log('执行终章到终幕的跳转');
+        this.isFinalAgeQuestion = false; // 重置标志
         
-        // 如果是终章问答
-        if (this.isFinalChapterQuiz && this.finalQuizQuestions) {
-            this.finalQuizCurrentIndex++;
-            
-            // 检查是否还有问题
-            if (this.finalQuizCurrentIndex < this.finalQuizQuestions.length) {
-                // 显示下一题
-                setTimeout(() => {
-                    this.showQuiz(this.finalQuizQuestions[this.finalQuizCurrentIndex] - 1, true);
-                }, 500);
-            } else {
-                // 终章问答完成
-                this.isFinalChapterQuiz = false;
-                this.finalQuizQuestions = null;
-                this.finalQuizCurrentIndex = 0;
-                
-                // 显示完成对话并跳转到终幕
-                setTimeout(() => {
-                    this.showDialogue({
-                        speakerName: 'AI辛追',
-                        speakerTitle: '30岁数字化身',
-                        text: '很好！你已经掌握了关于我的重要信息。看来你在梦境中学到了不少知识。现在，该回到现实世界了...',
-                        choices: [
-                            { text: '回到现实', action: () => this.advanceToFinalScene() }
-                        ]
-                    });
-                }, 500);
-            }
-        } 
-        // 其他章节的问题逻辑保持不变
-        else if (this.currentChapter < 7 && this.currentQuizIndex >= 0) {
-            // 原有逻辑保持不变...
+        // 显示完成对话并跳转到终幕
+        setTimeout(() => {
+            this.showDialogue({
+                speakerName: 'AI辛追',
+                speakerTitle: '30岁数字化身',
+                avatarIcon: 'fas fa-robot',
+                text: '很好！你已经掌握了关于我的重要信息。看来你在梦境中学到了不少知识。现在，该回到现实世界了...',
+                choices: [
+                    { text: '回到现实', action: () => this.advanceToChapter(7) }
+                ]
+            });
+        }, 500);
+        return; // 直接返回，不执行后续逻辑
+    }
+    
+    // ========== 以下是原有代码（保持不变） ==========
+    // 如果是终章问答
+    if (this.isFinalChapterQuiz && this.finalQuizQuestions) {
+        this.finalQuizCurrentIndex++;
+        
+        // 检查是否还有问题
+        if (this.finalQuizCurrentIndex < this.finalQuizQuestions.length) {
+            // 显示下一题
             setTimeout(() => {
-                if (this.currentChapter === 1 && this.currentQuizIndex === 0) {
-                    this.advanceToChapter(2);
-                } else if (this.currentChapter === 2 && this.currentQuizIndex === 1) {
-                    this.advanceToChapter(3);
-                } else if (this.currentChapter === 3 && (this.currentQuizIndex === 2 || this.currentQuizIndex === 10)) {
-                    this.advanceToChapter(4);
-                } else if (this.currentChapter === 4 && (this.currentQuizIndex === 3 || this.currentQuizIndex === 6 || this.currentQuizIndex === 12)) {
-                    this.advanceToChapter(5);
-                } else if (this.currentChapter === 5 && (this.currentQuizIndex === 5 || this.currentQuizIndex === 7 || this.currentQuizIndex === 9)) {
-                    this.showDialogue({
-                        speakerName: '乐师亡魂',
-                        speakerTitle: '汉代宫廷乐师',
-                        text: '知识掌握得不错！现在去数字实验室见AI辛追吧，她会问你更多问题。',
-                        choices: [
-                            { text: '前往数字实验室', action: () => this.advanceToChapter(6) }
-                        ]
-                    });
-                }
+                this.showQuiz(this.finalQuizQuestions[this.finalQuizCurrentIndex] - 1, true);
             }, 500);
-        } 
+        } else {
+            // 终章问答完成
+            this.isFinalChapterQuiz = false;
+            this.finalQuizQuestions = null;
+            this.finalQuizCurrentIndex = 0;
+            
+            // 显示完成对话并跳转到终幕
+            setTimeout(() => {
+                this.showDialogue({
+                    speakerName: 'AI辛追',
+                    speakerTitle: '30岁数字化身',
+                    text: '很好！你已经掌握了关于我的重要信息。看来你在梦境中学到了不少知识。现在，该回到现实世界了...',
+                    choices: [
+                        { text: '回到现实', action: () => this.advanceToFinalScene() }
+                    ]
+                });
+            }, 500);
+        }
+    } 
+    // 其他章节的问题逻辑保持不变
+    else if (this.currentChapter < 7 && this.currentQuizIndex >= 0) {
+        // 原有逻辑保持不变...
+        setTimeout(() => {
+            if (this.currentChapter === 1 && this.currentQuizIndex === 0) {
+                this.advanceToChapter(2);
+            } else if (this.currentChapter === 2 && this.currentQuizIndex === 1) {
+                this.advanceToChapter(3);
+            } else if (this.currentChapter === 3 && (this.currentQuizIndex === 2 || this.currentQuizIndex === 10)) {
+                this.advanceToChapter(4);
+            } else if (this.currentChapter === 4 && (this.currentQuizIndex === 3 || this.currentQuizIndex === 6 || this.currentQuizIndex === 12)) {
+                this.advanceToChapter(5);
+            } else if (this.currentChapter === 5 && (this.currentQuizIndex === 5 || this.currentQuizIndex === 7 || this.currentQuizIndex === 9)) {
+                this.showDialogue({
+                    speakerName: '乐师亡魂',
+                    speakerTitle: '汉代宫廷乐师',
+                    text: '知识掌握得不错！现在去数字实验室见AI辛追吧，她会问你更多问题。',
+                    choices: [
+                        { text: '前往数字实验室', action: () => this.advanceToChapter(6) }
+                    ]
+                });
+            }
+        }, 500);
+    } 
+    // 终幕的连续问答
+    else if (this.currentChapter === 7) {
+        this.currentQuizIndex++;
+        
+        // 检查是否所有问题都已回答
+        if (this.currentQuizIndex < this.gameData.quizzes.length) {
+            // 显示下一题
+            setTimeout(() => {
+                this.showQuiz(this.currentQuizIndex);
+            }, 500);
+        } else {
+            // 所有问题回答完毕，显示结束界面
+            this.showScreen('end');
+        }
+    }
+
         // 终幕的连续问答
         else if (this.currentChapter === 7) {
             this.currentQuizIndex++;

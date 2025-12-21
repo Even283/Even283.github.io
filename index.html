@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>马王堆秘影 - 沉浸式Web游戏</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https:
+//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -29,13 +30,12 @@
                 <div class="game-info">
                     <p><i class="fas fa-users"></i> 小组活动作品 | 中国传统文化探访</p>
                     <p><i class="fas fa-history"></i> 基于马王堆汉墓真实考古发现</p>
-                    <p><i class="fas fa-graduation-cap"></i> 《中国文化概论》课程实践</p>
                 </div>
             </div>
             
             <div class="start-options">
                 <button id="start-game" class="btn-primary">
-                    <i class="fas fa-play-circle"></i> 开始游戏
+                    <i class="fas fa-play-circle"></i> 开始游戏（有效点击区偏右）
                 </button>
                 <button id="how-to-play" class="btn-secondary">
                     <i class="fas fa-question-circle"></i> 游戏指南
@@ -46,14 +46,14 @@
             </div>
             
             <div class="hint">
-                <p><i class="fas fa-mobile-alt"></i> 最佳体验：请使用手机或平板竖屏模式</p>
+                <p><i class="fas fa-mobile-alt"></i> 如果你在游玩过程中遇到无法正常切换页面的情况，可以尝试找到右下角的地图实现直接跳转。</p>
             </div>
         </div>
         
         <!-- 游戏指南界面 -->
         <div id="guide-screen" class="screen">
             <div class="screen-header">
-                <h2><i class="fas fa-book-open"></i> 游戏指南</h2>
+                <h2><i class="fas fa-book-open"></i> 游戏指南（此页面点开后需要重新打开网址进行游戏）</h2>
                 <button id="back-from-guide" class="btn-close">
                     <i class="fas fa-times"></i>
                 </button>
@@ -62,7 +62,7 @@
             <div class="guide-content">
                 <div class="guide-section">
                     <h3><i class="fas fa-gamepad"></i> 游戏玩法</h3>
-                    <p>你将扮演一名在《中国文化概论》课堂上打瞌睡的大学生，在梦境中穿越到1972年的马王堆汉墓考古现场。</p>
+                    <p>你将扮演一名在课堂上打瞌睡的大学生，在梦境中穿越到1972年的马王堆汉墓考古现场。</p>
                     <p>通过互动解谜探索墓室，学习文物知识，最终在课堂醒来后回答教授的提问。</p>
                 </div>
                 
@@ -106,7 +106,7 @@
         <!-- 小组信息界面 -->
         <div id="team-screen" class="screen">
             <div class="screen-header">
-                <h2><i class="fas fa-users"></i> 小组信息</h2>
+                <h2><i class="fas fa-users"></i> 小组信息（此页面点开后需要重新打开网址进行游戏）</h2>
                 <button id="back-from-team" class="btn-close">
                     <i class="fas fa-times"></i>
                 </button>
@@ -117,47 +117,13 @@
                     <h3><i class="fas fa-project-diagram"></i> 项目介绍</h3>
                     <p>本游戏是《中国文化概论》课程的实践作业，围绕马王堆汉墓主题，结合考古学、历史学和数字技术，创作沉浸式学习体验。</p>
                 </div>
-                
-                <div class="team-section">
-                    <h3><i class="fas fa-user-graduate"></i> 小组成员（示例）</h3>
-                    <div class="members-grid">
-                        <div class="member">
-                            <div class="member-avatar"><i class="fas fa-user"></i></div>
-                            <div class="member-info">
-                                <h4>李明</h4>
-                                <p>组长 / 剧情设计</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member-avatar"><i class="fas fa-user"></i></div>
-                            <div class="member-info">
-                                <h4>张华</h4>
-                                <p>程序开发</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member-avatar"><i class="fas fa-user"></i></div>
-                            <div class="member-info">
-                                <h4>王芳</h4>
-                                <p>美术设计</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="member-avatar"><i class="fas fa-user"></i></div>
-                            <div class="member-info">
-                                <h4>赵强</h4>
-                                <p>历史考证</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 
                 <div class="team-section">
                     <h3><i class="fas fa-lightbulb"></i> 创新点</h3>
                     <ul>
                         <li>梦境叙事结构连接古今</li>
                         <li>互动解谜融合知识问答</li>
-                        <li>2.5D手绘美术风格</li>
                         <li>移动端优先的Web技术</li>
                         <li>基于真实考古发现的教育内容</li>
                     </ul>
@@ -167,7 +133,6 @@
                     <h3><i class="fas fa-calendar-alt"></i> 课程信息</h3>
                     <p><strong>课程：</strong>中国文化概论</p>
                     <p><strong>主题：</strong>中国古代科技、艺术与哲学</p>
-                    <p><strong>提交时间：</strong>12月28日24点前</p>
                 </div>
             </div>
             
@@ -422,7 +387,7 @@
                     </div>
                     <div class="map-info">
                         <p id="map-chapter-name">当前章节：序幕</p>
-                        <p id="map-chapter-desc">在《中国文化概论》课堂上打瞌睡...</p>
+                        <p id="map-chapter-desc">在课堂上打瞌睡...</p>
                         <button id="go-to-chapter" class="btn-primary" disabled>
                             前往该章节
                         </button>
