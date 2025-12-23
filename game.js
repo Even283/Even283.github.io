@@ -697,15 +697,15 @@ class MaWangDuiGame {
  
             content: `
                 <div style="text-align: center; margin: 20px 0;">
-                    <div id="gas-detector" style="width: 150px; height: 150px; background: #333; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid #666;">
+                    <div id="gas-detector" style="width: 150px; height: 150px; background: #333; border-radius: 1%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid #666;">
                         <i class="fas fa-gas-pump" style="font-size: 4rem; color: #aaa;"></i>
                     </div>
                     <p>气体检测仪</p>
                     <div id="detector-readings" style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.5); border-radius: 10px; display: none;">
                         <h4 style="color: #ff9800; margin-bottom: 10px;">检测结果</h4>
                         <p>甲烷含量: <span id="methane-level" style="color: #ff4444; font-weight: bold;">0%</span></p>
-                        <p>氧气含量: 19%</p>
-                        <p>二氧化碳: 2%</p>
+                        <p>氧气含量: 0.1%</p>
+                        <p>二氧化碳: 30%</p>
                     </div>
                 </div>
             `,
@@ -730,13 +730,13 @@ class MaWangDuiGame {
                     // 模拟甲烷含量上升
                     let level = 0;
                     const interval = setInterval(() => {
-                        level += 5;
+                        level += 1;
                         methaneLevel.textContent = `${level}%`;
-                        methaneLevel.style.color = level > 50 ? '#ff4444' : '#ff9800';
+                        methaneLevel.style.color = level > 1 ? '#ff4444' : '#ff9800';
                         
-                        if (level >= 85) {
+                        if (level >= 2) {
                             clearInterval(interval);
-                            methaneLevel.textContent = '85%';
+                            methaneLevel.textContent = '2%';
                             methaneLevel.style.color = '#ff4444';
                             
                             // 启用提交按钮
@@ -768,7 +768,7 @@ class MaWangDuiGame {
                     avatarIcon: 'fas fa-user-tie',
                     text: '这墓室构造有玄机！你看这分层结构，先是厚厚的白膏泥，然后是木炭层，最后才是棺椁。这是古人智慧的体现！',
                     choices: [
-                        { text: '让我看看分层结构', action: () => this.startTask2() },
+                        { text: '让我看看!', action: () => this.startTask2() },
                         
                     ]
                 });
@@ -909,7 +909,7 @@ class MaWangDuiGame {
                 text: '此画载我升天之路，你想仔细研究它的结构吗？',
                 choices: [
                     { 
-                        text: 'T形帛画（部分机型可能不能正常进行互动任务，可以尝试点击取消后使用右下角地图跳转）', 
+                        text: '愿闻其详，这帛画的结构定然藏着升天的奥秘（部分机型可能不能正常进行互动任务，可以尝试点击取消后使用右下角地图跳转）', 
                         action: () => this.startTShapePuzzle() 
                     }
                 ]
@@ -930,7 +930,7 @@ class MaWangDuiGame {
                     <div style="margin-bottom: 20px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
                         <p style="color: #a3d9ff;">T形帛画由三部分组成，请将下面的碎片拖放到上方的T形轮廓中：</p>
                         <p style="color: #ffd700; font-size: 0.9rem; margin-top: 5px;">
-                            <i class="fas fa-lightbulb"></i> 提示：上部较宽的是天界，中部和下部略窄
+                            <i class="fas fa-lightbulb"></i> 提示：上部较宽，中部和下部略窄
                         </p>
                     </div>
                     
@@ -940,7 +940,7 @@ class MaWangDuiGame {
                                     border: 3px dashed rgba(255, 215, 0, 0.3); 
                                     border-radius: 15px; background: rgba(0, 0, 0, 0.2);
                                     margin-bottom: 10px;">
-                            <!-- 天界轮廓（上部较宽） -->
+                            <!-- 天界轮廓 -->
                             <div id="drop-zone-天界" class="drop-zone" data-piece="天界" 
                                  style="position: absolute; top: 20px; left: 10px; width: 200px; height: 120px;
                                         border: 2px dashed rgba(187, 222, 251, 0.3); 
@@ -951,7 +951,7 @@ class MaWangDuiGame {
                                 </div>
                             </div>
                             
-                            <!-- 人间轮廓（中部较窄） -->
+                            <!-- 人间轮廓 -->
                             <div id="drop-zone-人间" class="drop-zone" data-piece="人间"
                                  style="position: absolute; top: 140px; left: 60px; width: 100px; height: 80px;
                                         border: 2px dashed rgba(200, 230, 201, 0.3);">
@@ -961,7 +961,7 @@ class MaWangDuiGame {
                                 </div>
                             </div>
                             
-                            <!-- 冥界轮廓（下部较窄） -->
+                            <!-- 冥界轮廓-->
                             <div id="drop-zone-冥界" class="drop-zone" data-piece="冥界"
                                  style="position: absolute; top: 220px; left: 60px; width: 100px; height: 100px;
                                         border: 2px dashed rgba(225, 190, 231, 0.3); 
@@ -1000,7 +1000,7 @@ class MaWangDuiGame {
                                             box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;">
                                     <i class="fas fa-sun" style="font-size: 1.3rem; color: #bbdefb; margin-bottom: 5px;"></i>
                                     <div style="color: #e3f2fd; font-weight: bold; font-size: 0.85rem;">天界</div>
-                                    <div style="color: #bbdefb; font-size: 0.7rem; margin-top: 3px;">较宽</div>
+                                    <div style="color: #bbdefb; font-size: 0.7rem; margin-top: 3px;">（画中有日、月、天门与天帝）</div>
                                 </div>
                                 
                                 <!-- 人间碎片 -->
@@ -1012,7 +1012,7 @@ class MaWangDuiGame {
                                             box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;">
                                     <i class="fas fa-users" style="font-size: 1rem; color: #c8e6c9; margin-bottom: 3px;"></i>
                                     <div style="color: #e8f5e9; font-weight: bold; font-size: 0.8rem;">人间</div>
-                                    <div style="color: #c8e6c9; font-size: 0.65rem; margin-top: 2px;">较窄</div>
+                                    <div style="color: #c8e6c9; font-size: 0.65rem; margin-top: 2px;">（画中有祭祀平台、侍从、飞龙）</div>
                                 </div>
                                 
                                 <!-- 冥界碎片 -->
@@ -1024,7 +1024,7 @@ class MaWangDuiGame {
                                             box-shadow: 0 4px 8px rgba(0,0,0,0.4); transition: all 0.3s;">
                                     <i class="fas fa-skull" style="font-size: 1rem; color: #e1bee7; margin-bottom: 3px;"></i>
                                     <div style="color: #f3e5f5; font-weight: bold; font-size: 0.8rem;">冥界</div>
-                                    <div style="color: #e1bee7; font-size: 0.65rem; margin-top: 2px;">较窄</div>
+                                    <div style="color: #e1bee7; font-size: 0.65rem; margin-top: 2px;">(画中有灵异生物、双鱼与水流)</div>
                                 </div>
                             </div>
                         </div>
@@ -1632,7 +1632,7 @@ ${isFinal ? 'font-size: 1.3rem;' : ''}
                     avatarIcon: 'fas fa-ghost',
                     text: '听，二十五弦瑟自鸣而响...这是一张珍贵的西汉瑟，可惜部分琴弦断裂了，需要修复才能重新奏响...',
                     choices: [
-                        { text: '修复二十五弦瑟', action: () => this.startSeRepairTask() },
+                        { text: '好可惜，我来试试', action: () => this.startSeRepairTask() },
                     
                                           ]
                 });
@@ -1771,7 +1771,7 @@ ${isFinal ? 'font-size: 1.3rem;' : ''}
                             action: () => this.showQuizInChapter(8) 
                         },
                         { 
-                            text: '返回乐器库', 
+                            text: '返回', 
                             action: () => {
                                 this.hideDialogue();
                                 // 重新显示第五章场景
@@ -2354,10 +2354,10 @@ ${isFinal ? 'font-size: 1.3rem;' : ''}
             speakerTitle: '30岁数字化身',
             text: '这里有四个重要的考古线索，仔细阅读它们，然后回答我的问题。',
             choices: [
-                { text: '查看线索一', action: () => this.showClue(1) },
-                { text: '查看线索二', action: () => this.showClue(2) },
-                { text: '查看线索三', action: () => this.showClue(3) },
-                { text: '查看线索四', action: () => this.showClue(4) },
+                { text: '线索一', action: () => this.showClue(1) },
+                { text: '线索二', action: () => this.showClue(2) },
+                { text: '线索三', action: () => this.showClue(3) },
+                { text: '线索四', action: () => this.showClue(4) },
                 { text: '已经看完线索，开始问答（回答完请点击右下角地图前往终幕）', action: () => this.startFinalQuiz() }
             ]
         });
